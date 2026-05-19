@@ -1,0 +1,12 @@
+---
+layout: default
+title: Downloads
+permalink: /downloads/
+---
+
+<h1>Downloads</h1>
+
+<div id="file-browser"></div>
+
+<link rel="stylesheet" href="/assets/css/file-browser.css">
+<script src="/assets/js/file-browser.js"></script>

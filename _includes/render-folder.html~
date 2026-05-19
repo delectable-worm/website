@@ -1,0 +1,77 @@
+{% assign prefix = include.prefix %}
+{% assign paths = include.paths %}
+
+{% assign folders = "" | split: "" %}
+
+{% comment %}
+Find immediate children of this prefix
+{% endcomment %}
+
+{% for path in paths %}
+
+  {% if path startswith prefix %}
+
+    {% assign remainder = path | remove_first: prefix %}
+
+    {% if remainder != "" %}
+
+      {% assign parts = remainder | split: "/" %}
+      {% assign first = parts[0] %}
+
+      {% unless folders contains first %}
+        {% assign folders = folders | push: first %}
+      {% endunless %}
+
+    {% endif %}
+
+  {% endif %}
+
+{% endfor %}
+
+{% comment %}
+Render folders first
+{% endcomment %}
+
+{% for folder in folders %}
+
+  {% assign new_prefix = prefix | append: folder | append: "/" %}
+
+  <div class="folder">
+
+    <div class="folder-title" onclick="toggleFolder(this)">
+      📁 {{ folder }}
+    </div>
+
+    <div class="folder-content">
+
+      {% include render-folder.html prefix=new_prefix paths=paths %}
+
+    </div>
+  </div>
+
+{% endfor %}
+
+{% comment %}
+Render files at this level
+{% endcomment %}
+
+{% for path in paths %}
+
+  {% if path startswith prefix %}
+
+    {% assign remainder = path | remove_first: prefix %}
+    {% assign parts = remainder | split: "/" %}
+
+    {% if parts.size == 1 and parts[0] != "" %}
+
+      <div class="file">
+        <a href="{{ '/downloads/' | append: path | relative_url }}">
+          📄 {{ parts[0] }}
+        </a>
+      </div>
+
+    {% endif %}
+
+  {% endif %}
+
+{% endfor %}

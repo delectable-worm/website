@@ -2,6 +2,7 @@
 ---
 @import "minimal-mistakes/skins/default";
 @import "minimal-mistakes";
+// Required Core Stylesheet
 
 .feature__item .archive__item-teaser {
   height: var(--teaser-height, 300px);
@@ -244,3 +245,48 @@ p > img:only-child {
   font-size: 13px;
   line-height: 1;
 }
+
+.file-explorer, .file-explorer ul {
+  list-style: none;
+  padding-left: 1em;
+}
+
+.folder > input {
+  display: none;
+}
+
+.folder > label {
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+
+.folder > label::before {
+  content: "▶";
+  display: inline-block;
+  width: 1em;
+  transition: transform 0.2s;
+}
+
+.folder > input:checked + label::before {
+  transform: rotate(90deg);
+}
+
+.folder > ul {
+  display: none;
+  margin-left: 1em;
+}
+
+.folder > input:checked + label + ul {
+  display: block;
+}
+
+.file a {
+  text-decoration: none;
+}
+
+.file.pdf a::before { content: "📄 "; }
+.file.zip a::before { content: "🗜️ "; }
+.file.exe a::before { content: "⚙️ "; }
+.file.txt a::before { content: "📝 "; }
+

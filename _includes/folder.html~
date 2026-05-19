@@ -1,0 +1,20 @@
+<ul class="file-explorer">
+  {% if tree.files %}
+    {% for file in tree.files %}
+      <li class="file {{ file.ext }}">
+        <a href="{{ file.url }}" download>{{ file.name }}</a>
+        ({{ file.size | divided_by: 1024 }} KB)
+      </li>
+    {% endfor %}
+  {% endif %}
+
+  {% for key in tree %}
+    {% if key != "files" %}
+      <li class="folder">
+        <input type="checkbox" id="folder-{{ key | slugify }}">
+        <label for="folder-{{ key | slugify }}">{{ key }}</label>
+        {% include folder.html tree=tree[key] %}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

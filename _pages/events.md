@@ -51,7 +51,7 @@ excerpt: "Join us for our upcoming events"
     </div>
 
     <div class="events-grid">
-      {% assign oneoff_events = site.events | where: "event_type", "one-off" | sort: "date" %}
+      {% assign oneoff_events = site.events | where: "event_type", "one-off" | sort: "date" | reverse %}
       {% if oneoff_events.size > 0 %}
         {% for event in oneoff_events %}
           {% include event-card.html event=event %}

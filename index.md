@@ -103,6 +103,8 @@ document.getElementById('cal-frame').srcdoc = html;
 {% for post in site.posts limit:3 %}
 	{% include post-card.html post=post %} <br />
 {% endfor %}
+
+Wanna read our [older posts](/archive/) ?
 # Our sponsors
 
 {% include sponsors.html  %}

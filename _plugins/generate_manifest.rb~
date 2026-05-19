@@ -1,0 +1,46 @@
+require 'json'
+
+Jekyll::Hooks.register :site, :post_write do |site|
+  downloads_dir = File.join(site.source, 'downloads')
+
+  def build_tree(path, base_url = '/downloads')
+    entries = Dir.children(path).sort.map do |entry|
+      full_path = File.join(path, entry)
+
+      if File.directory?(full_path)
+        {
+          name: entry,
+          type: 'folder',
+          children: build_tree(
+            full_path,
+            "#{base_url}/#{entry}"
+          )
+        }
+      else
+        {
+          name: entry,
+          type: 'file',
+          url: "#{base_url}/#{entry}",
+          size: File.size(full_path)
+        }
+      end
+    end
+
+    entries
+  end
+
+  manifest = {
+    name: 'downloads',
+    type: 'folder',
+    children: build_tree(downloads_dir)
+  }
+
+  output_path = File.join(site.dest, 'manifest.json')
+
+  File.write(
+    output_path,
+    JSON.pretty_generate(manifest)
+  )
+
+  puts "Generated manifest.json"
+end
