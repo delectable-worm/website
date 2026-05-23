@@ -1,5 +1,6 @@
 ---
 ---
+
 @import "minimal-mistakes/skins/default";
 @import "minimal-mistakes";
 // Required Core Stylesheet
@@ -35,8 +36,6 @@ p > img:only-child {
 
 
 
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
-@import "minimal-mistakes";
 
 
 // Sponsors

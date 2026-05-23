@@ -15,6 +15,9 @@ feature_row:
     alt: "placeholder image 1"
     title: "Resources"
     excerpt: "Problems from competitions and notes from seminars"
+    url: /mathsolympics/
+    btn_label: "Read More"
+    btn_class: "btn--inverse"
   - image_path: assets/mums-room.png
     alt: "placeholder image 2"
     title: "About us"

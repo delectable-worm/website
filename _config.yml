@@ -172,6 +172,7 @@ include:
   - _posts
   - _events
   - _plugins
+  - _sass
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
